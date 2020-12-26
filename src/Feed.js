@@ -13,7 +13,6 @@ import { useSelector } from 'react-redux';
 import { selectUser } from './features/userSlice';
 import FlipMove from 'react-flip-move';
 import likeSound from './audio/like.mp3';
-import unlikeSound from './audio/unlike.mp3';
 import {Howl, Howler} from 'howler';
 import Modal from 'react-modal';
 import { Avatar } from '@material-ui/core';
@@ -94,10 +93,6 @@ function Feed() {
         db.collection('postLikes').doc(id).update({
             [userID]: false
         })
-        const sound = new Howl({
-            src: unlikeSound
-        })
-        sound.play()
     }
 
     return (
