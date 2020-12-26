@@ -6,7 +6,9 @@ import './login.css';
 
 function Login() {
     const [email, setEmail] = useState('');
+    const [emaillogin, setEmailLogin] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordlogin, setPasswordLogin] = useState('');
     const [name, setName] = useState('');
     const [profilePic, setProfilePic] = useState('');
     const dispatch = useDispatch();
@@ -14,7 +16,7 @@ function Login() {
 
     const loginToApp = (e) => {
         e.preventDefault();
-        auth.signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(emaillogin, passwordlogin)
         .then(userAuth => {
             dispatch(login({
                 email: userAuth.user.email,
@@ -24,9 +26,12 @@ function Login() {
             }))
         }).catch((error => alert(error)) );
     }
-    const register = () => {
+    const register = (e) => {
+        e.preventDefault();
         if(!name){
             return alert('please enter your name')
+        }else if(!email){
+            return alert('please enter your email')
         }
         auth.createUserWithEmailAndPassword(email, password)
         .then((userAuth) => {
@@ -53,17 +58,18 @@ function Login() {
     return (
         <div className="login">
             <img src="https://news.hitb.org/sites/default/files/styles/large/public/field/image/500px-LinkedIn_Logo.svg__1.png?itok=q_lR0Vks" alt=""/>
+            <h5 style={{marginBottom: '20px'}}>This is a clone and not the real LinkedIn</h5>
             {registerscreen ? <form>
                 <input value={name} onChange={e => setName(e.target.value)} placeholder="Full Name(Required if registering)" type="text"/>
-                 <input value={profilePic} onChange={e => setProfilePic (e.target.value)} placeholder="Profile picture URL(optional)" type="text"/>
+                 <input value={profilePic} onChange={e => setProfilePic(e.target.value)} placeholder="Profile picture URL(optional)" type="text"/>
                  <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email Address" type="email"/>
                  <input value={password} onChange={e => setPassword(e.target.value)} placeholder="Set Password" type="password"/>
-                 <button onClick={register} style={{cursor: 'pointer'}}>Sign In</button>
+                 <button onClick={register} style={{cursor: 'pointer'}}>Register Now</button>
             </form>
             :
             <form>
-                 <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email Address" type="email"/>
-                 <input value={password} onChange={e => setPassword(e.target.value)} placeholder="Set Password" type="password"/>
+                 <input value={emaillogin} onChange={e => setEmailLogin(e.target.value)} placeholder="Email Address" type="email"/>
+                 <input value={passwordlogin} onChange={e => setPasswordLogin(e.target.value)} placeholder="Enter Password" type="password"/>
                  <button onClick={loginToApp} style={{cursor: 'pointer'}}>Sign In</button>
             </form>
             }

@@ -22,6 +22,14 @@
 
 .post__body{
     overflow-wrap: anywhere;
+    font-size: 14px;
+    font-weight: 500;
+    padding-top: 5px;
+}
+
+.post__body p span{
+    color:#0b66c4;
+    cursor: pointer
 }
 
 .post__info > h2{
@@ -30,4 +38,15 @@
 
 .post__buttons{
     display: flex;
+}
+
+.likeCount{
+    border-bottom: 1px solid #e4e4e4;
+    font-size: 11px;
+    margin-top: 20px;
+    padding: 10px;
+    color: #979797;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
 }
