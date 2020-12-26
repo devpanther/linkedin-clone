@@ -80,7 +80,6 @@ function Feed() {
 
     const likePost = (id) => {
         let userID = firebase.auth().currentUser.uid;
-        console.log(userID)
         db.collection('postLikes').doc(id).update({
             [userID]: true
         })
@@ -92,7 +91,6 @@ function Feed() {
 
     const unlikePost = (id) => {
         let userID = firebase.auth().currentUser.uid;
-        console.log(userID)
         db.collection('postLikes').doc(id).update({
             [userID]: false
         })

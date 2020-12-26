@@ -22,7 +22,16 @@ const Post = forwardRef(({ id, name, description, message, photoUrl, onLike, onU
         db.collection('postLikes').doc(id).onSnapshot(docRef => {
             x = docRef.data()
             setliked(x[userID])
+            let arr =  []
             setlikeCount(Object.keys(x).length)
+            for (var key in x) {
+                if (x.hasOwnProperty(key)) {
+                    if(x[key] == true){
+                        arr.push('c')
+                    }
+                    setlikeCount(arr.length)
+                }
+            }
         })
     }, [])
 
